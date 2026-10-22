@@ -1,0 +1,184 @@
+/**
+ * Windows 10 Window Management & Titlebar Styles
+ */
+
+.win-window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background: var(--window-bg);
+  border: 1px solid var(--window-border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  color: var(--text-dark);
+  transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.win-window.win-active {
+  border-color: var(--window-border-active);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+}
+
+.win-window.win-minimized {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8) translateY(80px);
+}
+
+.win-window.win-maximized {
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.win-window.win-snapped-left {
+  left: 0 !important;
+  top: 0 !important;
+  height: 100% !important;
+  border-top: none;
+  border-left: none;
+  border-bottom: none;
+}
+
+.win-window.win-snapped-right {
+  top: 0 !important;
+  height: 100% !important;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+.win-window.win-closing {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.12s ease, transform 0.12s ease;
+}
+
+/* Titlebar */
+.win-titlebar {
+  height: 32px;
+  min-height: 32px;
+  background: var(--window-titlebar);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: default;
+  user-select: none;
+  transition: background 0.15s ease;
+}
+
+.win-window.win-active .win-titlebar {
+  background: var(--window-titlebar-active);
+}
+
+.win-title-left {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  overflow: hidden;
+  flex: 1;
+}
+
+.win-title-icon {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.win-title-text {
+  font-size: 12px;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.win-window.win-active .win-title-text {
+  color: #000;
+}
+
+/* Window Controls (Minimize, Maximize, Close) */
+.win-controls {
+  display: flex;
+  height: 100%;
+}
+
+.win-control-btn {
+  width: 46px;
+  height: 100%;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111;
+  cursor: default;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.win-control-btn svg {
+  width: 11px;
+  height: 11px;
+}
+
+.win-control-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.win-control-btn.win-btn-close:hover {
+  background: #E81123;
+  color: #FFF;
+}
+.win-control-btn.win-btn-close:active {
+  background: #BF0F1D;
+  color: #FFF;
+}
+
+/* Window Body */
+.win-body {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  height: calc(100% - 32px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Edge & Corner Resizers */
+.win-resizer {
+  position: absolute;
+  z-index: 100;
+}
+.resizer-n { top: 0; left: 4px; right: 4px; height: 5px; cursor: n-resize; }
+.resizer-s { bottom: 0; left: 4px; right: 4px; height: 5px; cursor: s-resize; }
+.resizer-e { top: 4px; bottom: 4px; right: 0; width: 5px; cursor: e-resize; }
+.resizer-w { top: 4px; bottom: 4px; left: 0; width: 5px; cursor: w-resize; }
+
+.resizer-ne { top: 0; right: 0; width: 8px; height: 8px; cursor: ne-resize; }
+.resizer-nw { top: 0; left: 0; width: 8px; height: 8px; cursor: nw-resize; }
+.resizer-se { bottom: 0; right: 0; width: 8px; height: 8px; cursor: se-resize; }
+.resizer-sw { bottom: 0; left: 0; width: 8px; height: 8px; cursor: sw-resize; }
+
+/* Aero Snap Ghost Preview */
+.win-snap-ghost {
+  position: absolute;
+  background: rgba(0, 120, 215, 0.18);
+  border: 1px solid var(--win-accent);
+  box-shadow: 0 0 20px rgba(0, 120, 215, 0.35);
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.15s ease-out;
+  z-index: 8500;
+}
+.win-snap-ghost.active {
+  opacity: 1;
+}

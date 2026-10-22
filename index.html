@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Windows 10 Desktop</title>
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/desktop.css">
+  <link rel="stylesheet" href="css/taskbar.css">
+  <link rel="stylesheet" href="css/startmenu.css">
+  <link rel="stylesheet" href="css/window.css">
+  <link rel="stylesheet" href="css/flyouts.css">
+  <link rel="stylesheet" href="css/apps.css">
+  <link rel="stylesheet" href="css/music.css">
+</head>
+<body>
+  <!-- Root OS Container -->
+  <div id="win-os-root">
+    <!-- Desktop Surface (Icons, Windows, Aero Snap Ghost) -->
+    <main id="win-desktop-root" class="win-desktop theme-hero" role="main"></main>
+
+    <!-- Taskbar (Start button, Search box, Pinned apps, Tray, Clock) -->
+    <footer id="win-taskbar-root" role="contentinfo"></footer>
+
+    <!-- Overlay Panes (Start Menu, Action Center, Flyouts, Run Modal) -->
+    <div id="win-overlays-root"></div>
+  </div>
+
+  <!-- JavaScript Engines & Subsystems -->
+  <script src="js/icons.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/windowManager.js"></script>
+  <script src="js/desktop.js"></script>
+  <script src="js/taskbar.js"></script>
+  <script src="js/flyouts.js"></script>
+  <script src="js/actionCenter.js"></script>
+  <script src="js/startMenu.js"></script>
+  
+  <!-- Applications -->
+  <script src="js/apps/explorer.js"></script>
+  <script src="js/apps/notepad.js"></script>
+  <script src="js/apps/calculator.js"></script>
+  <script src="js/apps/settings.js"></script>
+  <script src="js/apps/cmd.js"></script>
+  <script src="js/apps/browser.js"></script>
+  <script src="js/apps/paint.js"></script>
+  <script src="js/apps/taskmgr.js"></script>
+  <script src="js/apps/music.js"></script>
+  
+  <!-- Main Coordinator -->
+  <script src="js/main.js"></script>
+</body>
+</html>

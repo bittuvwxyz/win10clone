@@ -1,0 +1,223 @@
+/**
+ * Windows 10 Desktop & Context Menu Styles
+ */
+
+.win-desktop {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  transition: background 0.4s ease;
+}
+
+/* Wallpapers */
+/* 1. Windows 10 Hero (Classic Laser Light Beam) */
+.win-desktop.theme-hero {
+  background: 
+    radial-gradient(circle at 65% 42%, rgba(0, 162, 237, 0.45) 0%, transparent 45%),
+    radial-gradient(circle at 35% 55%, rgba(0, 80, 160, 0.6) 0%, transparent 60%),
+    linear-gradient(135deg, #010A15 0%, #031B33 45%, #05264A 60%, #010E1D 100%);
+  background-attachment: fixed;
+}
+.win-desktop.theme-hero::before {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 45%;
+  width: 320px;
+  height: 240px;
+  background: radial-gradient(ellipse at center, rgba(120, 210, 255, 0.35) 0%, rgba(0, 120, 215, 0.1) 50%, transparent 75%);
+  transform: perspective(600px) rotateY(-22deg) rotateX(10deg);
+  pointer-events: none;
+  filter: blur(20px);
+}
+.win-desktop.theme-hero::after {
+  content: '';
+  position: absolute;
+  top: 33%;
+  left: 52%;
+  width: 180px;
+  height: 140px;
+  border-left: 2px solid rgba(255, 255, 255, 0.6);
+  border-top: 2px solid rgba(255, 255, 255, 0.4);
+  box-shadow: -15px -15px 40px rgba(0, 180, 255, 0.6), inset 10px 10px 30px rgba(0, 120, 215, 0.4);
+  transform: perspective(500px) rotateY(-28deg) rotateX(12deg);
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* 2. Windows 10 Light Theme */
+.win-desktop.theme-light {
+  background: radial-gradient(circle at 80% 20%, #CCE4F7 0%, transparent 50%),
+              radial-gradient(circle at 20% 80%, #D4E2F0 0%, transparent 50%),
+              linear-gradient(135deg, #E6EFF8 0%, #C4D9ED 50%, #9EBED9 100%);
+}
+
+/* 3. Scenic Coast */
+.win-desktop.theme-scenic {
+  background: linear-gradient(180deg, #1A446C 0%, #2980B9 35%, #27AE60 65%, #F39C12 100%);
+}
+
+/* 4. Minimal Carbon */
+.win-desktop.theme-carbon {
+  background: radial-gradient(circle at 50% 50%, #25282C 0%, #121417 100%);
+  background-image: radial-gradient(#202327 15%, transparent 16%), radial-gradient(#202327 15%, transparent 16%);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 8px;
+}
+
+/* Desktop Icon Grid */
+.desktop-icons-grid {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 8px;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.desktop-icon-item {
+  width: 86px;
+  height: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 6px 2px;
+  border-radius: 3px;
+  cursor: default;
+  border: 1px solid transparent;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.desktop-icon-item:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.desktop-icon-item.selected {
+  background-color: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.d-icon-graphic {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+  pointer-events: none;
+}
+
+.d-icon-label {
+  margin-top: 4px;
+  font-size: 11.5px;
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9), 0 0 4px rgba(0, 0, 0, 0.8);
+  line-height: 1.25;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Drag Selection Marquee Box */
+.win-marquee-box {
+  position: absolute;
+  border: 1px solid #0078D7;
+  background-color: rgba(0, 120, 215, 0.25);
+  pointer-events: none;
+  display: none;
+  z-index: 50;
+}
+.win-marquee-box.active {
+  display: block;
+}
+
+/* Windows 10 Context Menu */
+.win-context-menu {
+  position: fixed;
+  width: 220px;
+  background: rgba(36, 36, 40, 0.96);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  padding: 4px 0;
+  display: none;
+  z-index: 9500;
+  color: #EEE;
+}
+.win-context-menu.visible {
+  display: block;
+  animation: contextFade 0.1s ease-out;
+}
+
+.menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 14px;
+  font-size: 12px;
+  cursor: default;
+  transition: background 0.1s;
+}
+.menu-item:hover {
+  background: var(--win-accent);
+  color: #FFF;
+}
+.menu-item .arrow {
+  font-size: 10px;
+  color: #AAA;
+}
+.menu-item:hover .arrow {
+  color: #FFF;
+}
+
+.menu-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 4px 0;
+}
+
+/* Sub-context menus */
+.sub-context-menu {
+  position: absolute;
+  top: -4px;
+  left: 100%;
+  width: 180px;
+  background: rgba(36, 36, 40, 0.96);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  padding: 4px 0;
+  display: none;
+}
+.menu-parent:hover .sub-context-menu {
+  display: block;
+}
+.sub-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+@keyframes contextFade {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}

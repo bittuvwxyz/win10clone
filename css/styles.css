@@ -1,0 +1,190 @@
+/**
+ * Windows 10 Global Stylesheet
+ * Segoe UI typography, Accent variables, Acrylic materials, Night light, and Transitions.
+ */
+
+:root {
+  --win-accent: #0078D7;
+  --win-accent-hover: #1E8BE8;
+  --win-accent-active: #0063B1;
+  
+  --taskbar-bg: rgba(16, 16, 20, 0.85);
+  --taskbar-hover: rgba(255, 255, 255, 0.1);
+  --taskbar-active: rgba(255, 255, 255, 0.18);
+  
+  --start-bg: rgba(24, 24, 28, 0.88);
+  --flyout-bg: rgba(31, 31, 35, 0.92);
+  
+  --window-bg: #FFFFFF;
+  --window-titlebar: #EAEAEA;
+  --window-titlebar-active: #F3F3F3;
+  --window-border: #7F7F7F;
+  --window-border-active: var(--win-accent);
+  
+  --text-primary: #FFFFFF;
+  --text-muted: #A0A0A0;
+  --text-dark: #1E1E1E;
+  
+  --screen-brightness: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  font-size: 13px;
+  background-color: #000;
+  color: #FFF;
+  filter: brightness(var(--screen-brightness));
+}
+
+/* Night Light Overlay Mode */
+body.night-light-active::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-color: rgba(255, 140, 0, 0.15);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 999999;
+}
+
+/* Cursor during resizing/dragging */
+body.user-dragging {
+  cursor: default !important;
+}
+body.user-resizing {
+  cursor: nwse-resize !important;
+}
+
+/* OS Root Layout */
+#win-os-root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#win-desktop-root {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  height: calc(100% - 40px);
+  overflow: hidden;
+}
+
+#win-taskbar-root {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  z-index: 9000;
+}
+
+#win-overlays-root {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9100;
+}
+#win-overlays-root > * {
+  pointer-events: auto;
+}
+
+/* Scrollbar Windows 10 Styling */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+::-webkit-scrollbar-thumb {
+  background: #A0A0A0;
+  border: 3px solid transparent;
+  background-clip: content-box;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #707070;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+/* Sleep & Shutdown Screens */
+.win-sleep-screen {
+  position: fixed;
+  inset: 0;
+  background: #000000;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.sleep-hint {
+  color: #666;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+}
+
+.win-shutdown-overlay {
+  position: fixed;
+  inset: 0;
+  background: #004275;
+  z-index: 100000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+}
+.shutdown-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #FFF;
+  border-radius: 50%;
+  animation: win-spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+.shutdown-text {
+  font-size: 20px;
+  font-weight: 300;
+  text-align: center;
+}
+
+@keyframes win-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Screen Snip Overlay */
+.win-snip-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+  z-index: 99999;
+  cursor: crosshair;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.snip-hint {
+  background: rgba(30, 30, 30, 0.85);
+  padding: 10px 24px;
+  border-radius: 20px;
+  font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
